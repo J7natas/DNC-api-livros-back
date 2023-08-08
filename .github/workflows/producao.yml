@@ -14,7 +14,7 @@ jobs:
 
 job1:
   name: CI - Buld e descrição do artefato
-  runs-on: unbuntu-latest
+  runs-on: ubuntu-latest
   steps:
     - name: Pegar codigo de Repositorio
       uses: actions/checkout@v3
@@ -43,7 +43,7 @@ job1:
   job2:
     name: CD - deploy na vercel
     needs: job1
-    runs-on: unbuntu-latest
+    runs-on: ubuntu-latest
     steps: 
       - name: Baixando artefato do código buildado
         uses: actions/download-artifact@v3
