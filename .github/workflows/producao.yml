@@ -66,4 +66,4 @@ job1:
         run: vercel build --prod --token=${{ VERCEL_TOKEN }}
 
       - name: Deploy de artefatos do projeto na Vercel
-        run: vercel deploy --prebuil --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
