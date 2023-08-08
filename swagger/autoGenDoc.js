@@ -29,7 +29,7 @@ let doc = {
 }
 
 swaggerAutogen(outputFile, endpointsFile, doc).then(() => {
-    console.log("Documetação do swagger gerada encontra-se no aquivo: "+outputFile);
+    console.log("Documetação do swagger gerada encontra-se no aquivo: " + outputFile);
     if(process.env.NODE_ENV !== 'production'){{
         require('../index.js');
     }}
