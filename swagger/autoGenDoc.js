@@ -1,5 +1,4 @@
-//const mongooseToSwagger = require('mongoose-to-swagger');
-//const esquemaTarefa = require('../src/models/livros.js');
+const mongooseToSwagger = require('mongoose-to-swagger');
 const swaggerAutogen = require('swagger-autogen')({
     openapi: '3.0.0',
     lenguage: 'pt-BR'
