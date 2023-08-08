@@ -1,0 +1,69 @@
+name: Pipiline de produção
+env: 
+  NODE_ENV: production
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+
+on:
+  push:
+    branch: 
+    - main
+jobs:
+
+
+job1:
+  name: CI - Buld e descrição do artefato
+  runs-on: unbuntu-latest
+  steps:
+    - name: Pegar codugo de Repositorio
+      uses: actions/checkout@v3
+
+    - name: Instalando pacotes do npm
+      run: npm install
+
+    - name: Gerando a documentação no Swagger
+      run: npm run autoDoc
+
+    - name: Apagando pasta node_modules
+      run: rm -rf .gt
+
+    - name: Arquivos e pastas
+      run: ls
+
+    - name: Criando artefato ZIP do código buildado
+      uses: actions/upload-artifact@v3
+      with:
+        name: artefato
+        retention-days: 1
+        path: ./
+
+
+
+  job2:
+    name: CD - deploy na vercel
+    needs: job1
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Baixando artefato do código buildado
+        uses: actions/download-artifact@v3
+        with:
+          name: artefato
+
+      - name: Instalando pacotes do npm
+        run: npm install
+
+      - name: Arquivos e pastas do artefato
+        run: ls
+
+      - name: Instalando CLI da Vercel
+        run: npm install --global vercel@latest
+
+      - name: Buscando informações de ambiente no Vercel
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Buildando artefato do projeto
+        run: vercel build --prod --token=${{ VERCEL_TOKEN }}
+
+      - name: Deploy de artefatos do projeto na Vercel
+        run: vercel deploy --prebuil --prod --token=${{ secrets.VERCEL_TOKEN }}
