@@ -9,34 +9,37 @@ on:
   push:
     branch: 
     - main
+
 jobs:
 
+  job1:
+    name: CI - Buld e descrição do artefato
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pegar codigo de Repositorio
+        uses: actions/checkout@v3
 
-job1:
-  name: CI - Buld e descrição do artefato
-  runs-on: ubuntu-latest
-  steps:
-    - name: Pegar codigo de Repositorio
-      uses: actions/checkout@v3
+      - name: Instalando pacotes do npm
+        run: npm install
 
-    - name: Instalando pacotes do npm
-      run: npm install
+      - name: Gerando a documentação no Swagger
+        run: npm run autoDoc
 
-    - name: Gerando a documentação no Swagger
-      run: npm run autoDoc
+      - name: Apagando pasta node_modules
+        run: rm -rf node_modules
 
-    - name: Apagando pasta node_modules
-      run: rm -rf .gt
+      - name: Apagando pasta .git
+        run: rm -rf .git
 
-    - name: Arquivos e pastas
-      run: ls
+      - name: Arquivos e pastas
+        run: ls
 
-    - name: Criando artefato ZIP do código buildado
-      uses: actions/upload-artifact@v3
-      with:
-        name: artefato
-        retention-days: 1
-        path: ./
+      - name: Criando artefato ZIP do código buildado
+        uses: actions/upload-artifact@v3
+        with:
+          name: artefato
+          retention-days: 1
+          path: ./
 
 
 
@@ -63,7 +66,7 @@ job1:
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Buildando artefato do projeto
-        run: vercel build --prod --token=${{ VERCEL_TOKEN }}
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy de artefatos do projeto na Vercel
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
