@@ -7,6 +7,7 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerOption = { customCssUrl: '/swagger-ui.css' }
 
 const routes = require('./src/routes');
+const autDocProduction = require('./src/midllewares/autDoch');
 
 const app = express();
 require('dotenv').config();
@@ -21,7 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 if(process.env.NODE_ENV !== 'test'){
     const swaggerFile = require('./swagger/swagger_output.json');
     app.get('/', (req, res) => {/* swagger.ignore = true */ res.redirect('/doc')});
-    app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile, swaggerOption));
+    app.use('/doc', autDocProduction, swaggerUi.serve, swaggerUi.setup(swaggerFile, swaggerOption));
 }
 
 routes(app);
