@@ -7,7 +7,7 @@ env:
 
 on:
   push:
-    branch: 
+    branches: 
     - main
 
 jobs:
@@ -22,7 +22,7 @@ jobs:
       - name: Instalando pacotes do npm
         run: npm install
 
-      - name: Gerando a documentação no Swagger
+      - name: Gerando a documentação do Swagger.json
         run: npm run autoDoc
 
       - name: Apagando pasta node_modules
@@ -59,14 +59,14 @@ jobs:
       - name: Arquivos e pastas do artefato
         run: ls
 
-      - name: Instalando CLI da Vercel
+      - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
-      - name: Buscando informações de ambiente no Vercel
+      - name: BUscando informações do anbiente na vercel
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
-      - name: Buildando artefato do projeto
+      - name: Build de artefato do projeto
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
 
-      - name: Deploy de artefatos do projeto na Vercel
+      - name: Deploy do artefato do projeto na vercel
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
