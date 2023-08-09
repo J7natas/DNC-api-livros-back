@@ -12,7 +12,7 @@ async function autDocProduction(req, res, next) {
     if(senhaList){
         res.status(401).set('Content-type', 'text/html');
         res.send(Buffer.from(`
-            <form method="POST">
+            <form method="post">
                 <p style="color:red">Senha errada</p>
                 <label for="senha">Senha da documentação</label>
                 <input type="password" name="senha" id="senha" />
@@ -23,7 +23,7 @@ async function autDocProduction(req, res, next) {
         res.status(200).set('Content-type', 'text/html');
         res.send(Buffer.from(`
             <form method="POST">
-                <label for="senhaList">Senha da documentação</label>
+                <label for="senha">Senha da documentação</label>
                 <input type="password" name="senha" id="senha" />
                 <button type="submit">Entrar</button>
             </form>

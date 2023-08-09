@@ -1,4 +1,3 @@
-const mongooseToSwagger = require('mongoose-to-swagger');
 const swaggerAutogen = require('swagger-autogen')({
     openapi: '3.0.0',
     lenguage: 'pt-BR'
@@ -19,7 +18,7 @@ let doc = {
             descroption: "servidor localhost"
     },
     {
-        url: "https://api-livros.vercel.app/",
+        url: "https://dnc-api-livros-back.vercel.app/",
         description: "Servidor de produção"
     }
     ],
