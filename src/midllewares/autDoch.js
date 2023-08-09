@@ -9,7 +9,7 @@ async function autDocProduction(req, res, next) {
         return next();
     }
 
-    if(senhaList){
+    if(senha){
         res.status(401).set('Content-type', 'text/html');
         res.send(Buffer.from(`
             <form method="post">
