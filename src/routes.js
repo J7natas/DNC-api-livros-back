@@ -1,5 +1,5 @@
 function routes(app){
-    app.use('/livros', require('./routes/livros.js'))
+    app.use('/livros',  require('./routes/livros.js'));
     return;
 }
 
