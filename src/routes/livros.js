@@ -1,10 +1,10 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const conectBancodeDados = require('../midllewares/conectarBD');
+const router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  console.log(process.env.TEST);
-  res.send('Est funcionado corretamente');
+router.get('/', conectBancodeDados, function(req, res, next) {
+  res.send('Est funcionado corretamente: '+process.env.TEST);
 });
 
 module.exports = router;
