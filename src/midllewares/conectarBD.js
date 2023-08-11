@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const tratarErrosInesperados = require('../function/tratrarErrosInesperados');
 
-async function conectBancodeDados(req = null, res = null, nex = null){
+async function conectBancodeDados(req = null, res = null, next = null){
     try {
         await mongoose.connect(process.env.MONGOBD_URI, { useNewUrlParser: true, useUnifiedTopology: true } )
         console.log('Conectado ao banco de dados')

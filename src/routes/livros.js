@@ -32,11 +32,31 @@ router.put('/editar/:id', conectBancodeDados, async function(req, res) {
       throw new Error("Livro não encontrado");
     }
 
-    const respostaBD = await EsquemaLivro.updateOne( {_id: idLivro }, {  titulo, descricao, numero_paginas, editora, ISBN } );
+    const livroAtualizado = await EsquemaLivro.updateOne( {_id: idLivro }, {  titulo, descricao, numero_paginas, editora, ISBN } );
+    if(livroAtualizado?.modifiedCount > 0) {
+      const dadosLivro = await EsquemaLivro.findOne({ _id: idLivro });
+
+      res.status(200).json({
+        status: 'ok',
+        statusMensaagem: "Livro atualzada com suceso!",
+        resposta: dadosLivro
+      })
+  
+    }
+    
+  } catch (error) {
+    return tratarErrosInesperados(res, error)
+  }
+});
+
+router.get('/obter', conectBancodeDados, async function(req, res) {
+  try {
+    // #swagger.tags = ['Livro']
+    const respostaBD = await EsquemaLivro.find();
 
     res.status(200).json({
       status: 'ok',
-      statusMensaagem: "Livro atualzada com suceso!",
+      statusMensaagem: "Livros listados na resposta!",
       resposta: respostaBD
     })
 
@@ -44,6 +64,7 @@ router.put('/editar/:id', conectBancodeDados, async function(req, res) {
     return tratarErrosInesperados(res, error)
   }
 });
+
 
 
 module.exports = router;
