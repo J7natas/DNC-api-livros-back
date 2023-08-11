@@ -6,7 +6,7 @@ const swaggerAutogen = require('swagger-autogen')({
 });
 
 const outputFile = './swagger_output.json';
-const endpointsFile = ['../index.js', '../src/routes.js'];
+const endpointsFile = ['../src/routes.js'];
 
 let doc = {
     info: {
@@ -16,7 +16,7 @@ let doc = {
     },
     serves: [
         {
-            ulr: "http://localhost:3000",
+            ulr: "http://localhost:3000/",
             descroption: "servidor localhost"
     },
     {

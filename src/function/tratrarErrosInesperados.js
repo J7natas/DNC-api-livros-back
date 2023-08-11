@@ -14,7 +14,7 @@ function tratarErrosInesperados(res, err) {
             status: "Error",
             statusMenssagem:String(err).replace("Error: ",""),
             resposta: String(err)
-        })
+        });
     }
 
     console.error(err);
@@ -22,7 +22,7 @@ function tratarErrosInesperados(res, err) {
         status: "Error",
         tatusMenssagem: "Houve um problema inesperado, tente novamente mais tarde",
         resposta: String(err)
-    })
+    });
 }
 
 module.exports = tratarErrosInesperados;
