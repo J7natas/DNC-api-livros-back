@@ -67,4 +67,6 @@ router.get('/obter', conectBancodeDados, async function(req, res) {
 
 
 
+
+
 module.exports = router;
