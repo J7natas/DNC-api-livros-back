@@ -58,7 +58,8 @@ router.get('/obter', conectBancodeDados, async function(req, res) {
       status: 'ok',
       statusMensaagem: "Livros listados na resposta!",
       resposta: respostaBD
-    })
+    });
+    
 
   } catch (error) {
     return tratarErrosInesperados(res, error)
