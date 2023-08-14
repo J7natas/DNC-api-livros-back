@@ -21,8 +21,6 @@ router.post('/adicionar', conectBancodeDados, async function(req, res) {
     }
 });
 
-
-
 router.put('/editar/:id', conectBancodeDados, async function(req, res) {
   try {
     // #swagger.tags = ['Livro']
