@@ -68,4 +68,27 @@ router.get('/obter', conectBancodeDados, async function(req, res) {
   }
 });
 
+router.delete('/deletar/:id', conectBancodeDados, async function(req, res) {
+  try {
+    // #swagger.tags = ['Livro']
+    let idLivro = req.params.id;
+    let {titulo, descricao, numero_paginas, editora, ISBN } = req.body;
+
+    const checkLivro = await EsquemaLivro.findOne({ _id: idLivro });
+    if(!checkLivro){
+      throw new Error("Livro não encontrado");
+    }
+
+    const livroDeletado = await EsquemaLivro.deleteOne( {_id: idLivro } );
+      res.status(200).json({
+        status: 'ok',
+        statusMensaagem: "Livro deletado com suceso!",
+        resposta: livroDeletado
+      })
+    
+  } catch (error) {
+    return tratarErrosInesperados(res, error)
+  }
+});
+
 module.exports = router;
