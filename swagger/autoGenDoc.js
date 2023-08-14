@@ -5,8 +5,14 @@ const swaggerAutogen = require('swagger-autogen')({
     lenguage: 'pt-BR'
 });
 
-const outputFile = './swagger_output.json';
-const endpointsFile = ['../src/routes.js'];
+let outputFile = './swagger_output.json';
+let endpointsFile = ['./src/routes.js'];
+
+if(String(process.env.OS).toLocaleLowerCase().includes("windows")){
+    outputFile = './swagger/swagger_output.json';
+    endpointsFile = ['./src/routes.js'];
+}
+
 
 let doc = {
     info: {
@@ -14,14 +20,14 @@ let doc = {
         title: "API de livros",
         description: "Documentação da API de livros"
     },
-    serves: [
+    servers: [
         {
-            ulr: "http://localhost:3000/",
+            url: "http://localhost:3000/",
             descroption: "servidor localhost"
-    },
-    {
-        url: "https://dnc-api-livros-back.vercel.app/",
-        description: "Servidor de produção"
+        },
+        {
+            url: "https://dnc-api-livros-back.vercel.app/",
+            description: "Servidor de produção"
     }
     ],
     consumes: ['application/json'],

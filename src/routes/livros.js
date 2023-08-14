@@ -56,7 +56,7 @@ router.get('/obter', conectBancodeDados, async function(req, res) {
 
     res.status(200).json({
       status: 'ok',
-      statusMensaagem: "Livros listados na resposta!",
+      statusMensaagem: "Livros listados na com sucesso",
       resposta: respostaBD
     });
     
@@ -65,9 +65,5 @@ router.get('/obter', conectBancodeDados, async function(req, res) {
     return tratarErrosInesperados(res, error)
   }
 });
-
-
-
-
 
 module.exports = router;
