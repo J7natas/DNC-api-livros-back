@@ -56,7 +56,7 @@ router.get('/obter', conectBancodeDados, async function(req, res) {
 
     res.status(200).json({
       status: 'ok',
-      statusMensaagem: "Livros listados na com sucesso",
+      statusMensaagem: "Livros listados com sucesso",
       resposta: respostaBD
     });
     

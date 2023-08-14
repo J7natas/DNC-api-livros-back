@@ -8,12 +8,6 @@ const swaggerAutogen = require('swagger-autogen')({
 let outputFile = './swagger_output.json';
 let endpointsFile = ['./src/routes.js'];
 
-if(String(process.env.OS).toLocaleLowerCase().includes("windows")){
-    outputFile = './swagger/swagger_output.json';
-    endpointsFile = ['./src/routes.js'];
-}
-
-
 let doc = {
     info: {
         version: "1.0.0",

@@ -22,6 +22,9 @@ const esquema = new mongoose.Schema(
             type: Number,
             require: 'e obrigatorio'
         }
+    },
+    {
+        timestamps: true
     }
 );
 
