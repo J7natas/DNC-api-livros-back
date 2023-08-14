@@ -23,7 +23,7 @@ let doc = {
     servers: [
         {
             url: "http://localhost:3000/",
-            descroption: "servidor localhost"
+            description: "servidor localhost"
         },
         {
             url: "https://dnc-api-livros-back.vercel.app/",
