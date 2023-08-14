@@ -4,7 +4,7 @@ function tratarErrosInesperados(res, err) {
     if(String(err).includes(`ValidationError:`)){
         return res.status(400).json({
             status: "Error",
-            statusMenssagem: S(String(err).replace("ValidadorError: ", "")).replaceAll(':', '').S,
+            statusMenssagem: S(String(err).replace("ValidationError: ", "")).replaceAll(':', '').s,
             resposta: String(err)
         })
     }
@@ -20,7 +20,7 @@ function tratarErrosInesperados(res, err) {
     console.error(err);
     return res.status(500).json({
         status: "Error",
-        tatusMenssagem: "Houve um problema inesperado, tente novamente mais tarde",
+        statusMenssagem: "Houve um problema inesperado, tente novamente mais tarde",
         resposta: String(err)
     });
 }
